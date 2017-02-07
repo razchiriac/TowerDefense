@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 	
 	private Transform target;
 
+	public GameObject impactEffect;
 	public float speed = 70f;
 
 	// pass the target from the turret to the bullet
@@ -36,9 +37,9 @@ public class Bullet : MonoBehaviour
 
 	void HitTarget ()
 	{
-		Debug.Log ("Bullet has hit Target!");
-		// hit logic
-
+		GameObject effectInst = (GameObject)Instantiate (impactEffect, transform.position, transform.rotation);
+		Destroy (target.gameObject);
+		Destroy (effectInst, 2f);
 		Destroy (gameObject);
 	}
 
